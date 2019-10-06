@@ -75,3 +75,22 @@ def list_image():
     res['start'] = start
     res['total'] = len(images)
     return jsonify(res)
+
+
+@route_upload.route('/pic', methods=['GET', 'POST'])
+def upload_pic():
+    """
+    iframe封面图无刷新上传
+    """
+    file_target = request.files
+    # pic为form表单中input标签内name属性
+    up_file = file_target['pic'] if 'pic' in file_target else None
+    # 调用iframe父类js方法
+    callback_target = 'window.parent.upload'
+    if not up_file:
+        return f'<script type="text/javascript">{callback_target}.error("{"上传失败"}")</script>'
+    ret = UploadService.upload_file(up_file)
+    if ret['code'] != 200:
+        return f'<script type="text/javascript">{callback_target}.error("{"上传失败"+ret["msg"]}")</script>'
+    # get请求展示图片
+    return f'<script type="text/javascript">{callback_target}.success("{ret["data"]["file_key"]}")</script>'

@@ -7,6 +7,7 @@ var upload = {
         if (!file_key) {
             return;
         }
+        // 构建一段html代码显示图片
         var html = '<img src="' + common_ops.buildPicUrl(file_key) + '"/>'
             + '<span class="fa fa-times-circle del del_image" data="' + file_key + '"></span>';
 
@@ -163,6 +164,7 @@ var food_set_ops = {
     },
     delete_img: function () {
         $(".wrap_food_set .del_image").unbind().click(function () {
+            // 调用父类js删除显示图片的html代码
             $(this).parent().remove();
         });
     }
