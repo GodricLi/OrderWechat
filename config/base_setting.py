@@ -28,4 +28,16 @@ STATUS_MAPPING = {
     "0": "已删除"
 }
 
-RELEASE_VERSION = "20180729001"
+RELEASE_VERSION = None
+
+# 文件上传配置
+UPLOAD = {
+    'ext': ['jpg', 'gif', 'bmp', 'jpeg', 'png'],
+    'prefix_path': '/web/static/upload/',
+    'prefix_url': '/static/upload/'
+}
+# 配置文件上传至服务器的路径
+APP = {
+    # 服务器域名及端口
+    'image': 'http://0.0.0.0:5000'
+}

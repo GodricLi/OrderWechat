@@ -8,6 +8,7 @@ from application import app, db
 from common.libs.Helper import pagination
 from sqlalchemy import or_
 
+"""后台账号管理"""
 route_account = Blueprint('account_page', __name__)
 
 
@@ -143,7 +144,10 @@ def set_info():
 
 @route_account.route("/ops", methods=['POST'])
 def ops():
-    """通过修改账号状态删除恢复账号"""
+    """
+    后台账号的删除、恢复操作
+    通过修改账号状态删除恢复账号
+    """
     res = {'code': 200, 'msg': "操作成功", 'data': {}}
     request_data = request.values
 
@@ -173,4 +177,3 @@ def ops():
     db.session.add(user_info)
     db.session.commit()
     return jsonify(res)
-

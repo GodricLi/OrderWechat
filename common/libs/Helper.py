@@ -66,7 +66,7 @@ def pagination(params):
 """
 
 
-def get_current_time():
+def get_current_time(format="%Y-%m-%d %H:%M:%S"):
     return datetime.datetime.now()
 
 

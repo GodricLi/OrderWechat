@@ -18,3 +18,11 @@ class UrlManager(object):
         ver = f"{int(time.time())}" if not release_version else release_version
         path = "/static" + path + "?ver=" + ver
         return UrlManager.buildUrl(path)
+
+    @staticmethod
+    def buildImageUrl(path):
+        """构建文件上传置服务器的路径"""
+        app_config = app.config['APP']
+        # 服务器域名+文件存放目录+文件名
+        url = app_config['image'] + app.config['UPLOAD']['prefix_url'] + path
+        return url
